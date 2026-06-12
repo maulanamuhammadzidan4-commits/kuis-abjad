@@ -4,18 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuis mengenal huruf abjad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- CSS INTERNAL --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', Roboto, sans-serif;
+            background-color: #FFFEE8; /* Kuning pastel cerah */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Kontainer Utama Menu */
+        .container {
+            text-align: center;
+            padding: 40px 30px;
+            background: #ffffff;
+            border-radius: 40px;
+            box-shadow: 0 15px 0 #E6E5CE; /* Efek 3D tebal */
+            border: 6px solid #2b2d42;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        /* Judul Menu Utama */
+        h1 {
+            font-size: 2.2rem;
+            color: #2b2d42;
+            margin-bottom: 35px;
+            text-shadow: 2px 2px 0px #FFF;
+            line-height: 1.3;
+        }
+
+        /* Tata Letak Pilihan Menu */
+        .menu-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Jarak antar tombol */
+        }
+
+        /* Desain Tombol Menu Utama */
+        section button {
+            font-family: 'Comic Sans MS', sans-serif;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ffffff;
+            width: 100%;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        /* Kustomisasi Warna & Efek 3D Tiap Pilihan */
+        #kapital button {
+            background-color: #FF4757; /* Merah cerah */
+            box-shadow: 0 10px 0 #FF1F30;
+        }
+        #kapital button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #FF1F30;
+        }
+
+        #biasa button {
+            background-color: #1E90FF; /* Biru cerah */
+            box-shadow: 0 10px 0 #0070E0;
+        }
+        #biasa button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #0070E0;
+        }
+
+        #suku-kata button {
+            background-color: #2ED573; /* Hijau cerah */
+            box-shadow: 0 10px 0 #20B056;
+        }
+        #suku-kata button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #20B056;
+        }
+
+        /* Efek saat tombol ditekan (Berlaku tuk semua tombol) */
+        section button:active {
+            transform: translateY(10px);
+            box-shadow: 0 0px 0 transparent;
+        }
+
+        /* --- RESPONSIVE MOBILE STYLING --- */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                border-radius: 30px;
+                border-width: 5px;
+                box-shadow: 0 10px 0 #E6E5CE;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+                margin-bottom: 25px;
+            }
+
+            section button {
+                font-size: 1.3rem;
+                padding: 14px 15px;
+                border-radius: 20px;
+            }
+            
+            /* Penyesuaian bayangan tombol di HP saat ditekan */
+            #kapital button { box-shadow: 0 7px 0 #FF1F30; }
+            #biasa button { box-shadow: 0 7px 0 #0070E0; }
+            #suku-kata button { box-shadow: 0 7px 0 #20B056; }
+            
+            #kapital button:hover { box-shadow: 0 9px 0 #FF1F30; }
+            #biasa button:hover { box-shadow: 0 9px 0 #0070E0; }
+            #suku-kata button:hover { box-shadow: 0 9px 0 #20B056; }
+
+            section button:active {
+                transform: translateY(7px);
+                box-shadow: 0 0px 0 transparent;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <section id="kapital">
-            <button onclick="kapital()">Kapital</button>
-        </section>
-        <section id="biasa">
-            <button onclick="biasa()">Biasa</button>
-        </section>
-        <section id="suku-kata">
-            <button onclick="sukuKata()">Suku Kata</button>
-        </section>
+        <h1>Mau Belajar Apa<br>Hari Ini?</h1>
+        
+        <div class="menu-wrapper">
+            <section id="kapital">
+                <button onclick="kapital()">Huruf Kapital</button>
+            </section>
+            <section id="biasa">
+                <button onclick="biasa()">Huruf Biasa</button>
+            </section>
+            <section id="suku-kata">
+                <button onclick="sukuKata()">Suku Kata</button>
+            </section>
+        </div>
     </div>
 
     <script>

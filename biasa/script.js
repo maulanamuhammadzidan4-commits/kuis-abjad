@@ -1,5 +1,5 @@
 // 1. Perbaikan: Menambahkan huruf 'N' yang sempat hilang
-const huruf = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+const huruf = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 function acakHuruf(array){
     for(let i = array.length - 1; i > 0; i--){
@@ -26,7 +26,7 @@ function ulangHuruf(){
 }
 
 // Logika nilai dan DOM
-let nilai = Number(localStorage.getItem('kNilaiSimpan')) || 0;
+let nilai = Number(localStorage.getItem('bNilaiSimpan')) || 0;
 const tambahNilai = document.querySelectorAll('.kotak-huruf');
 const checkOrtuTua = document.querySelector('.cek');
 const utama = document.querySelector('.container');
@@ -56,7 +56,7 @@ tambahNilai.forEach((kotak) => {
 
 function benar(){
     nilai += 10;
-    localStorage.setItem('kNilaiSimpan', nilai);
+    localStorage.setItem('bNilaiSimpan', nilai);
     updateUI(); // Update UI segera setelah nilai bertambah
 
     checkOrtuTua.style.display = 'none';
@@ -96,7 +96,7 @@ if(nilai >= batas){
 }
 
 function ulangi(){
-    localStorage.removeItem('kNilaiSimpan');
+    localStorage.removeItem('bNilaiSimpan');
     location.reload();
 }
 
