@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis mengenal huruf abjad</title>
+</head>
+<body>
+    <div class="container">
+        <section id="kapital">
+            <button onclick="kapital()">Kapital</button>
+        </section>
+        <section id="biasa">
+            <button onclick="biasa()">Biasa</button>
+        </section>
+        <section id="suku-kata">
+            <button onclick="sukuKata()">Suku Kata</button>
+        </section>
+    </div>
+
+    <script>
+        function kapital(){
+            window.location.href = 'kapital/index.html';
+        }
+        function biasa(){
+            window.location.href = 'biasa/index.html';
+        }
+        function sukuKata(){
+            window.location.href = 'suku-kata/index.html';
+        }
+    </script>
+</body>
+</html>

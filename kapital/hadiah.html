@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadiah</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #FFFEE8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 15px; /* Mencegah card menyentuh tepi layar HP */
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+        }
+        .card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 40px;
+            border: 6px solid #2b2d42;
+            box-shadow: 0 15px 0 #E6E5CE;
+        }
+        h2 { color: #FF4757; font-size: 2.5rem; margin-bottom: 20px; }
+        .hasil { font-size: 1.5rem; color: #2b2d42; }
+        #nilai { color: #1E90FF; font-size: 2rem; }
+        #hadiah { color: #2ED573; font-size: 2rem; display: block; margin-top: 15px; font-weight: bold; }
+
+        /* --- MEDIA QUERY FOR MOBILE HP --- */
+        @media screen and (max-width: 480px) {
+            .card {
+                padding: 30px 15px;
+                border-radius: 25px;
+                border-width: 4px;
+                box-shadow: 0 10px 0 #E6E5CE;
+            }
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            .hasil {
+                font-size: 1.2rem;
+            }
+            #nilai {
+                font-size: 1.5rem;
+            }
+            #hadiah {
+                font-size: 1.5rem;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Ini adalah hadiahmu!</h2>
+            <p class="hasil">Karena nilaimu adalah <b id="nilai"></b>. Jadi hadiahmu adalah <span id="hadiah"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // variabel buat memilih elemen dan ngambil nilai
+        const nilai = Number(localStorage.getItem('nilaiSimpan')) || 0;
+        const hNilai = document.getElementById('nilai'); // singkatan hasil nilai
+        const hadiah = document.getElementById('hadiah');
+
+        // logika buat menentukan hadiah dan menampilkan hadiah
+        const tipeHadiah = (nilai >= 80) ? 'Main Roblox 45 menit' : (nilai >= 65) ? 'Lorem ipsum' : 'Data tidak terbaca';
+        hadiah.innerText = tipeHadiah;
+        hNilai.innerText = nilai;
+    </script>
+</body>
+</html>
