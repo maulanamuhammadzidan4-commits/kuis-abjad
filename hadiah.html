@@ -45,6 +45,12 @@
         button:hover {
             background-color: #FF6B81;
         }
+        .alert{
+            display: none;
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+        }
 
         /* --- MEDIA QUERY FOR MOBILE HP --- */
         @media screen and (max-width: 480px) {
@@ -80,6 +86,14 @@
         </div>
     </div>
 
+    <div class="alert">
+        <div class="card">
+            <h2>Hadiah?</h2>
+            <p class="hasil">Data nilai <span id="galat"></span> masih kosong. Jadi, isi dulu ya.</p>
+            <button onclick="isi()">Isi</button>
+        </div>
+    </div>
+
     <script>
         // variabel buat memilih elemen dan ngambil nilai
         const nilaiK = Number(localStorage.getItem('kNilaiSimpan'));
@@ -88,16 +102,48 @@
         const bnilai = document.getElementById('bnilai');
         const tnilai = document.getElementById('tnilai');
         const hadiah = document.getElementById('hadiah');
+        const galat = document.getElementById('galat');
+        console.log(`${nilaiK} ${nilaiB}`)
 
         // logika pemilihan hadiah
         const totalNilai = nilaiK + nilaiB;
         const tipeHadiah = (totalNilai == 200) ? 'Lorem ipsum' : (totalNilai > 100) ? 'lorem' : (totalNilai <= 100) ? 'ipsum' : 'Tidak ada hadiah untukmu.';
 
         // output hadiah
-        knilai.innerText = nilaiK;
-        bnilai.innerText = nilaiB;
-        tnilai.innerText = totalNilai;
-        hadiah.innerText = tipeHadiah;
+        const penentu = (nilaiK == 0 && nilaiB == 0) ? 'z' : (nilaiK == 0) ? 'b' : (nilaiB == 0) ? 'd' : 'f';
+        function isi(){
+            if (penentu == 'b'){
+                window.location.href = 'kapital/index.html';
+            } else if (penentu == 'd'){
+                window.location.href = 'biasa/index.html';
+            } else if (penentu == 'z'){
+                window.location.href = 'index.html';
+            }
+        }
+        if (penentu == 'z'){
+            document.querySelector('.alert').innerHTML = `
+            <div class="card">
+                <h2>Hadiah?</h2>
+                <p class="hasil">Semua nilai masih kosong. Isi dulu ya!</p>
+                <button onclick="isi()">Isi</button>
+            </div>
+            `;
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.alert').style.display = 'flex';
+        } else if (penentu == 'b'){
+            galat.innerText = 'Kapital';
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.alert').style.display = 'flex';
+        } else if (penentu == 'd'){
+            galat.innerText = 'Biasa';
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.alert').style.display = 'flex';
+        } else if (penentu == 'f'){
+            knilai.innerText = nilaiK;
+            bnilai.innerText = nilaiB;
+            tnilai.innerText = totalNilai;
+            hadiah.innerText = tipeHadiah;
+        }
 
         function pulang(){
             window.location.href = 'index.html';
