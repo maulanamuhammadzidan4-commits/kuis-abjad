@@ -95,6 +95,15 @@
             box-shadow: 0 14px 0 #20B056;
         }
 
+        #hadiah button {
+            background-color: #eefd15; /* Hijau cerah */
+            box-shadow: 0 10px 0 #dfe529;
+        }
+        #hadiah button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #b4ce1c;
+        }
+
         /* Efek saat tombol ditekan (Berlaku tuk semua tombol) */
         section button:active {
             transform: translateY(10px);
@@ -151,6 +160,9 @@
             <section id="suku-kata">
                 <button onclick="sukuKata()">Suku Kata</button>
             </section>
+            <section id="hadiah">
+                <button onclick="hadiah()">Hadiah</button>
+            </section>
         </div>
     </div>
 
@@ -163,6 +175,9 @@
         }
         function sukuKata(){
             window.location.href = 'suku-kata/index.html';
+        }
+        function hadiah(){
+            window.location.href = 'hadiah.html'
         }
     </script>
 </body>
