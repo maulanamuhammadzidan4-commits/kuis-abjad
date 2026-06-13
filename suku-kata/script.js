@@ -101,7 +101,6 @@ if(nilai >= batas){
 
 function ulangi(){
     localStorage.removeItem('nilaiSukuKata');
-    localStorage.removeItem('bNilaiSimpan');
     location.reload();
 }
 

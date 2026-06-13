@@ -81,7 +81,7 @@
     <div class="container">
         <div class="card">
             <h2>Ini adalah hadiahmu!</h2>
-            <p class="hasil">Karena nilaimu adalah <b id="knilai"></b> + <b id="bnilai"></b> = <b id="tnilai"></b>. Jadi hadiahmu adalah <span id="hadiah"></span></p>
+            <p class="hasil">Karena nilaimu adalah <b id="knilai"></b> + <b id="bnilai"></b> + <b id="suku-kata"></b> = <b id="tnilai"></b>. Jadi hadiahmu adalah <span id="hadiah"></span></p>
             <button onclick="pulang()">Kembali</button>
         </div>
     </div>
@@ -98,25 +98,30 @@
         // variabel buat memilih elemen dan ngambil nilai
         const nilaiK = Number(localStorage.getItem('kNilaiSimpan'));
         const nilaiB = Number(localStorage.getItem('bNilaiSimpan'));
+        const nilaiSukuKata = Number(localStorage.getItem('nilaiSukuKata'));
         const knilai = document.getElementById('knilai');
         const bnilai = document.getElementById('bnilai');
+        const sukuKata = document.getElementById('suku-kata');
         const tnilai = document.getElementById('tnilai');
         const hadiah = document.getElementById('hadiah');
         const galat = document.getElementById('galat');
-        console.log(`${nilaiK} ${nilaiB}`)
+        console.log(`${nilaiK} ${nilaiB} ${nilaiSukuKata}`);
 
         // logika pemilihan hadiah
-        const totalNilai = nilaiK + nilaiB;
-        const tipeHadiah = (totalNilai == 200) ? 'Lorem ipsum' : (totalNilai > 100) ? 'lorem' : (totalNilai <= 100) ? 'ipsum' : 'Tidak ada hadiah untukmu.';
+        const totalNilai = nilaiK + nilaiB + nilaiSukuKata;
+        const tipeHadiah = (totalNilai > 200) ? 'Gacor' : (totalNilai == 200) ? 'Lorem ipsum' : (totalNilai > 100) ? 'lorem' : (totalNilai <= 100) ? 'ipsum' : 'Tidak ada hadiah untukmu.';
 
         // output hadiah
-        const penentu = (nilaiK == 0 && nilaiB == 0) ? 'z' : (nilaiK == 0) ? 'b' : (nilaiB == 0) ? 'd' : 'f';
+        const penentu = (nilaiK == 0 && nilaiB == 0 && nilaiSukuKata == 0) ? 'z' : (nilaiK == 0 && nilaiB == 0 || nilaiB == 0 && nilaiSukuKata == 0 || nilaiK == 0 && nilaiSukuKata == 0) ? 'p' : (nilaiK == 0) ? 'b' : (nilaiB == 0) ? 'd' : (nilaiSukuKata == 0) ? 'g' : 'f';
+        console.log(penentu);
         function isi(){
             if (penentu == 'b'){
                 window.location.href = 'kapital/index.html';
             } else if (penentu == 'd'){
                 window.location.href = 'biasa/index.html';
-            } else if (penentu == 'z'){
+            } else if (penentu == 'g'){
+                window.location.href = 'suku-kata/index.html'
+            } else if (penentu == 'z' || penentu == 'p'){
                 window.location.href = 'index.html';
             }
         }
@@ -138,13 +143,23 @@
             galat.innerText = 'Biasa';
             document.querySelector('.container').style.display = 'none';
             document.querySelector('.alert').style.display = 'flex';
+        } else if (penentu == 'g'){
+            galat.innerText = 'Suku Kata';
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.alert').style.display = 'flex';
+        } else if (penentu == 'p'){
+            let kosong1 = (nilaiK == 0 && nilaiB == 0) ? 'Kapital' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Biasa' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : '';
+            let kosong2 = (nilaiK == 0 && nilaiB == 0) ? 'Biasa' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Kapital' : '';
+            galat.innerText = `${kosong1} dan ${kosong2}`;
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.alert').style.display = 'flex';
         } else if (penentu == 'f'){
             knilai.innerText = nilaiK;
             bnilai.innerText = nilaiB;
+            sukuKata.innerText = nilaiSukuKata;
             tnilai.innerText = totalNilai;
             hadiah.innerText = tipeHadiah;
         }
-
         function pulang(){
             window.location.href = 'index.html';
             localStorage.removeItem('kNilaiSimpan');

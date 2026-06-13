@@ -94,7 +94,6 @@ if(nilai >= batas){
 
 function ulangi(){
     localStorage.removeItem('kNilaiSimpan');
-    localStorage.removeItem('bNilaiSimpan');
     location.reload();
 }
 
