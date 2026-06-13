@@ -81,10 +81,7 @@ function salah(){
         peringatan.style.display = 'flex';
         utama.style.display = 'none';
     } else {
-        utama.style.display = '';
-        setTimeout(() => {
-            location.reload();
-        }, 300);
+        utama.style.display = '';yyyy
     }
 }
 

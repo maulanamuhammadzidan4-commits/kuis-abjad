@@ -1,33 +1,40 @@
-// 1. Perbaikan: Menambahkan huruf 'N' yang sempat hilang
-const huruf = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+// logika dasar untuk memilih suku kata secara acak dan menampilkan ke html
+const sukuKata = [
+    ['Ba', 'Bi', 'Bu', 'Be', 'Bo'],
+    ['Ca', 'Ci', 'Cu', 'Ce', 'Co'],
+    ['Da', 'Di', 'Du', 'De', 'Do']
+];
+const allSukuKata = sukuKata.flat(); // di ubah dulu jadi 1D
 
-function acakHuruf(array){
+function acakKata(array){
     for(let i = array.length - 1; i > 0; i--){
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [array[i], array[j]] = [array[j], array[i]]
     }
+    
     return array;
 }
 
-function pilih(jumlah){
-    const soalHuruf = [...huruf];
-    const soal = acakHuruf(soalHuruf);
+function pilihSukuKata(jumlah){
+    const soalSukuKata = [...allSukuKata];
+    const soal = acakKata(soalSukuKata);
     return soal.slice(0, jumlah);
 }
 
-const pilihan = pilih(3);
+const pilihanKata = pilihSukuKata(3);
 
-document.getElementById('soal1').innerText = pilihan[0];
-document.getElementById('soal2').innerText = pilihan[1];
-document.getElementById('soal3').innerText = pilihan[2];
+document.getElementById('soal1').innerText = pilihanKata[0];
+document.getElementById('soal2').innerText = pilihanKata[1];
+document.getElementById('soal3').innerText = pilihanKata[2];
 
-function ulangHuruf(){
+// fungsi buat ganti kata
+function ulangKata(){
     location.reload();
 }
 
 // Logika nilai dan DOM
-let nilai = Number(localStorage.getItem('kNilaiSimpan')) || 0;
-const tambahNilai = document.querySelectorAll('.kotak-huruf');
+let nilai = Number(localStorage.getItem('nilaiSukuKata')) || 0;
+const tambahNilai = document.querySelectorAll('.kotak-kata');
 const checkOrtuTua = document.querySelector('.cek');
 const utama = document.querySelector('.container');
 const batas = 100;
@@ -56,7 +63,7 @@ tambahNilai.forEach((kotak) => {
 
 function benar(){
     nilai += 10;
-    localStorage.setItem('kNilaiSimpan', nilai);
+    localStorage.setItem('nilaiSukuKata', nilai);
     updateUI(); // Update UI segera setelah nilai bertambah
 
     checkOrtuTua.style.display = 'none';
@@ -93,7 +100,7 @@ if(nilai >= batas){
 }
 
 function ulangi(){
-    localStorage.removeItem('kNilaiSimpan');
+    localStorage.removeItem('nilaiSukuKata');
     localStorage.removeItem('bNilaiSimpan');
     location.reload();
 }
