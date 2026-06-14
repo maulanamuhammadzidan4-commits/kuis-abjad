@@ -108,24 +108,18 @@ body {
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.kotak-huruf:hover {
-    transform: translateY(-8px);
-}
-
 /* WARNA KOTAK HURUF */
-#soal1 { background-color: #FF4757; box-shadow: 0 12px 0 #FF1F30; }
-#soal1:hover { box-shadow: 0 18px 0 #FF1F30; }
+#soal1 { background-color: #FF4757; box-shadow: 0 12px 0 #FF1F30; transition: all 0.15s ease; }
+#soal1:hover { transform: translateY(-6px); box-shadow: 0 18px 0 #FF1F30; }
+#soal1:active { transform: translateY(11px); box-shadow: 0 0 0 #FF1F30; }
 
-#soal2 { background-color: #1E90FF; box-shadow: 0 12px 0 #0070E0; }
-#soal2:hover { box-shadow: 0 18px 0 #0070E0; }
+#soal2 { background-color: #1E90FF; box-shadow: 0 12px 0 #0070E0; transition: all 0.15s ease; }
+#soal2:hover { transform: translateY(-6px); box-shadow: 0 18px 0 #0070E0; }
+#soal2:active { transform: translateY(11px); box-shadow: 0 0 0 #0070E0; }
 
-#soal3 { background-color: #2ED573; box-shadow: 0 12px 0 #20B056; }
-#soal3:hover { box-shadow: 0 18px 0 #20B056; }
-
-.kotak-huruf:active {
-    transform: translateY(8px);
-    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
-}
+#soal3 { background-color: #2ED573; box-shadow: 0 12px 0 #20B056; transition: all 0.15s ease; }
+#soal3:hover { transform: translateY(-6px); box-shadow: 0 18px 0 #20B056; }
+#soal3:active { transform: translateY(11px); box-shadow: 0 0 0 #20B056; }
 
 /* --- GLOBAL STYLING BUTTON --- */
 button {
