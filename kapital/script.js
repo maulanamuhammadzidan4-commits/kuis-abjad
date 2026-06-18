@@ -100,13 +100,6 @@ function benar(){
 
 function salah(){
     checkOrtuTua.style.display = 'none';
-    // Jika salah, nilai tidak bertambah, langsung cek apakah game sudah harus berakhir karena nilai sebelumnya sudah penuh
-    if(nilai >= batas) {
-        peringatan.style.display = 'flex';
-        utama.style.display = 'none';
-    } else {
-        utama.style.display = '';
-    }
 }
 
 // Pengecekan saat halaman pertama kali di-load
