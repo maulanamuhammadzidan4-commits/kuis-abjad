@@ -11,43 +11,97 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Menggunakan min-height agar fleksibel */
             margin: 0;
             padding: 15px; /* Mencegah card menyentuh tepi layar HP */
+            box-sizing: border-box;
         }
+        
+        /* Memastikan semua elemen menghitung padding dengan benar */
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
         .container {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
             max-width: 450px;
         }
+        
         .card {
             background: white;
-            padding: 40px 20px;
+            padding: 30px 25px;
             border-radius: 40px;
             border: 6px solid #2b2d42;
             box-shadow: 0 15px 0 #E6E5CE;
+            width: 100%; /* Memaksa card mengikuti batas max-width container */
         }
-        h2 { color: #FF4757; font-size: 2.5rem; margin-bottom: 20px; }
-        .hasil { font-size: 1.5rem; color: #2b2d42; }
-        #nilai { color: #1E90FF; font-size: 2rem; }
-        #hadiah { color: #2ED573; font-size: 2rem; display: block; margin-top: 15px; font-weight: bold; }
-        button{
-            margin-top: 25px;
-            padding: 10px 20px;
-            font-size: 1.2rem;
+        
+        h2 { 
+            color: #FF4757; 
+            font-size: 2.2rem; 
+            margin-top: 0;
+            margin-bottom: 15px; 
+            text-align: center; /* Memastikan teks judul di tengah */
+        }
+        
+        /* --- STYLE TABEL --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1rem;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 3px solid #2b2d42;
+            padding: 8px 5px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #FF6B81;
+            color: white;
+        }
+        td {
+            background-color: #FFFEE8;
+            color: #2b2d42;
+            font-weight: bold;
+        }
+        th:nth-child(1), td:nth-child(1) { width: 15%; }
+        th:nth-child(2), td:nth-child(2) { width: 55%; text-align: left; padding-left: 10px; }
+        th:nth-child(3), td:nth-child(3) { width: 30%; }
+        /* -------------------- */
+
+        .hasil { text-align: center; font-size: 1.3rem; color: #2b2d42; margin-top: 20px; margin-bottom: 10px; }
+        #nilai { color: #1E90FF; font-size: 1.8rem; }
+        #hadiah { color: #2ED573; font-size: 1.8rem; display: block; margin-top: 10px; font-weight: bold; }
+        
+        /* Membungkus tombol agar posisinya bisa di tengah card */
+        button {
+            display: block;
+            margin: 15px auto 0 auto; /* auto kiri-kanan membuat tombol di tengah */
+            padding: 10px 25px;
+            font-size: 1.1rem;
             color: white;
             background-color: #FF4757;
             border: none;
             border-radius: 25px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 150px;
         }
         button:hover {
             background-color: #FF6B81;
         }
-        .alert{
+        
+        .alert {
             display: none;
-            text-align: center;
+            justify-content: center;
+            align-items: center;
             width: 100%;
             max-width: 450px;
         }
@@ -55,24 +109,40 @@
         /* --- MEDIA QUERY FOR MOBILE HP --- */
         @media screen and (max-width: 480px) {
             .card {
-                padding: 30px 15px;
+                padding: 25px 15px;
                 border-radius: 25px;
                 border-width: 4px;
                 box-shadow: 0 10px 0 #E6E5CE;
             }
             h2 {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
+                font-size: 1.6rem;
+                margin-bottom: 10px;
             }
+            
+            table {
+                font-size: 0.85rem;
+                margin: 10px 0;
+            }
+            th, td {
+                padding: 6px 3px;
+                border-width: 2px;
+            }
+            th:nth-child(2), td:nth-child(2) { padding-left: 5px; }
+
             .hasil {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                margin-top: 15px;
             }
             #nilai {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             #hadiah {
-                font-size: 1.5rem;
-                margin-top: 10px;
+                font-size: 1.4rem;
+                margin-top: 5px;
+            }
+            button {
+                font-size: 1rem;
+                padding: 8px 20px;
             }
         }
     </style>
@@ -81,7 +151,36 @@
     <div class="container">
         <div class="card">
             <h2>Ini adalah hadiahmu!</h2>
-            <p class="hasil">Karena nilaimu adalah <b id="knilai"></b> + <b id="bnilai"></b> + <b id="suku-kata"></b> = <b id="tnilai"></b>. Jadi hadiahmu adalah <span id="hadiah"></span></p>
+
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>Nama Kuis</th>
+                    <th>Nilai</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Huruf kapital</td>
+                    <td><span id="knilai"></span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Huruf Biasa</td>
+                    <td><span id="bnilai"></span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Suku kata dasar</td>
+                    <td><span id="suku-kata"></span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Suku kata Lanjutan</td>
+                    <td><span id="suku-kata-lanjutan"></span></td>
+                </tr>
+            </table>
+
+            <p class="hasil">Karena nilaimu adalah <b id="tnilai"></b>. Jadi hadiahmu adalah <span id="hadiah"></span></p>
             <button onclick="pulang()">Kembali</button>
         </div>
     </div>
@@ -99,20 +198,22 @@
         const nilaiK = Number(localStorage.getItem('kNilaiSimpan'));
         const nilaiB = Number(localStorage.getItem('bNilaiSimpan'));
         const nilaiSukuKata = Number(localStorage.getItem('nilaiSukuKata'));
+        const nextNilaiSukuKata = Number(localStorage.getItem('nilaiSukuKata2'));
         const knilai = document.getElementById('knilai');
         const bnilai = document.getElementById('bnilai');
         const sukuKata = document.getElementById('suku-kata');
+        const nextKata = document.getElementById('suku-kata-lanjutan');
         const tnilai = document.getElementById('tnilai');
         const hadiah = document.getElementById('hadiah');
         const galat = document.getElementById('galat');
-        console.log(`${nilaiK} ${nilaiB} ${nilaiSukuKata}`);
+        console.log(`${nilaiK} ${nilaiB} ${nilaiSukuKata} ${nextNilaiSukuKata}`);
 
         // logika pemilihan hadiah
-        const totalNilai = nilaiK + nilaiB + nilaiSukuKata;
-        const tipeHadiah = (totalNilai > 200) ? 'Gacor' : (totalNilai == 200) ? 'Lorem ipsum' : (totalNilai > 100) ? 'lorem' : (totalNilai <= 100) ? 'ipsum' : 'Tidak ada hadiah untukmu.';
+        const totalNilai = nilaiK + nilaiB + nilaiSukuKata + nextNilaiSukuKata;
+        const tipeHadiah = (totalNilai > 400) ? 'Gacor' : (totalNilai == 400) ? 'Lorem ipsum' : (totalNilai > 100) ? 'lorem' : (totalNilai <= 100) ? 'ipsum' : 'Tidak ada hadiah untukmu.';
 
         // output hadiah
-        const penentu = (nilaiK == 0 && nilaiB == 0 && nilaiSukuKata == 0) ? 'z' : (nilaiK == 0 && nilaiB == 0 || nilaiB == 0 && nilaiSukuKata == 0 || nilaiK == 0 && nilaiSukuKata == 0) ? 'p' : (nilaiK == 0) ? 'b' : (nilaiB == 0) ? 'd' : (nilaiSukuKata == 0) ? 'g' : 'f';
+        const penentu = (nilaiK == 0 && nilaiB == 0 && nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'z' : (nilaiK == 0 && nilaiB == 0 || nilaiB == 0 && nilaiSukuKata == 0 || nilaiK == 0 && nilaiSukuKata == 0 || nilaiK == 0 && nextNilaiSukuKata == 0 || nilaiB == 0 && nextNilaiSukuKata == 0 || nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'p' : (nilaiK == 0) ? 'b' : (nilaiB == 0) ? 'd' : (nilaiSukuKata == 0) ? 'g' : (nextNilaiSukuKata == 0) ? 'h' : 'f';
         console.log(penentu);
         function isi(){
             if (penentu == 'b'){
@@ -121,6 +222,8 @@
                 window.location.href = 'biasa/index.html';
             } else if (penentu == 'g'){
                 window.location.href = 'suku-kata/index.html'
+            } else if (penentu == 'h'){
+                window.location.href = 'suku-kata/lanjutan/lanjutan.html'
             } else if (penentu == 'z' || penentu == 'p'){
                 window.location.href = 'index.html';
             }
@@ -147,9 +250,13 @@
             galat.innerText = 'Suku Kata';
             document.querySelector('.container').style.display = 'none';
             document.querySelector('.alert').style.display = 'flex';
+        } else if(penentu == 'h'){
+            galat.innerText = 'Suku kata lanjutan';
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.alert').style.display = 'flex';
         } else if (penentu == 'p'){
-            let kosong1 = (nilaiK == 0 && nilaiB == 0) ? 'Kapital' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Biasa' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : '';
-            let kosong2 = (nilaiK == 0 && nilaiB == 0) ? 'Biasa' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Kapital' : '';
+            let kosong1 = (nilaiK == 0 && nilaiB == 0) ? 'Kapital' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Biasa' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : (nilaiK == 0 && nextNilaiSukuKata == 0) ? 'Kapital' : (nilaiB == 0 && nextNilaiSukuKata == 0) ? 'Suku kata lanjutan' : (nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'Suku kata' : '';
+            let kosong2 = (nilaiK == 0 && nilaiB == 0) ? 'Biasa' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Kapital' : (nilaiK == 0 && nextNilaiSukuKata == 0) ? 'Suku kata lanjutan' : (nilaiB == 0 && nextNilaiSukuKata == 0) ? 'Biasa' : (nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'Suku kata lanjutan' : '';
             galat.innerText = `${kosong1} dan ${kosong2}`;
             document.querySelector('.container').style.display = 'none';
             document.querySelector('.alert').style.display = 'flex';
@@ -157,14 +264,13 @@
             knilai.innerText = nilaiK;
             bnilai.innerText = nilaiB;
             sukuKata.innerText = nilaiSukuKata;
+            nextKata.innerText = nextNilaiSukuKata;
             tnilai.innerText = totalNilai;
             hadiah.innerText = tipeHadiah;
         }
         function pulang(){
             window.location.href = 'index.html';
-            localStorage.removeItem('kNilaiSimpan');
-            localStorage.removeItem('bNilaiSimpan');
-            localStorage.removeItem('nilaiSukuKata');
+            localStorage.clear()
         }
     </script>
 </body>
