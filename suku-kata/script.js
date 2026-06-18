@@ -11,6 +11,11 @@ const sukuKata = [
     ['la', 'li', 'lu', 'le', 'lo'],
     ['ma', 'mi', 'mu', 'me', 'mo'],
     ['na', 'ni', 'nu', 'ne', 'no'],
+    ['pa', 'pi', 'pu', 'pe', 'po'],
+    ['ra', 'ri', 'ru', 're', 'ro'],
+    ['sa', 'si', 'su', 'se', 'so'],
+    ['ta', 'ti', 'tu', 'te', 'to'],
+    ['ya', 'yi', 'yu', 'ye', 'yo']
 ];
 const allSukuKata = sukuKata.flat(); // di ubah dulu jadi 1D
 
