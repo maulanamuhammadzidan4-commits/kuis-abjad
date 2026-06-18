@@ -1,8 +1,16 @@
 // logika dasar untuk memilih suku kata secara acak dan menampilkan ke html
 const sukuKata = [
-    ['Ba', 'Bi', 'Bu', 'Be', 'Bo'],
-    ['Ca', 'Ci', 'Cu', 'Ce', 'Co'],
-    ['Da', 'Di', 'Du', 'De', 'Do']
+    ['ba', 'bi', 'bu', 'be', 'bo'],
+    ['ca', 'ci', 'cu', 'ce', 'co'],
+    ['da', 'di', 'du', 'de', 'do'],
+    ['fa', 'fi', 'fu', 'fe', 'fo'],
+    ['ga', 'gi', 'gu', 'ge', 'go'],
+    ['ha', 'hi', 'hu', 'he', 'ho'],
+    ['ja', 'ji', 'ju', 'je', 'jo'],
+    ['ka', 'ki', 'ku', 'ke', 'ko'],
+    ['la', 'li', 'lu', 'le', 'lo'],
+    ['ma', 'mi', 'mu', 'me', 'mo'],
+    ['na', 'ni', 'nu', 'ne', 'no'],
 ];
 const allSukuKata = sukuKata.flat(); // di ubah dulu jadi 1D
 
@@ -106,4 +114,8 @@ function ulangi(){
 
 function hadiah(){
     window.location.href = '../hadiah.html';
+}
+
+function lanjut(){
+    window.location.href = 'lanjutan/lanjutan.html';
 }
