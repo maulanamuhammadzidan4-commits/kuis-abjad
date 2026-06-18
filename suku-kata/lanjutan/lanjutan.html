@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanjutan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="lanjutan.css">
+</head>
+<body>
+    <div class="container">
+        <section class="penunjuk-nilai">
+            <p id="rekamNiai">Nilaimu adalah: <span id="rNilai"></span></p>
+            <div class="progres-bar">
+                <p id="persentase"></p>
+                <div id="bar-isi"></div>
+            </div>
+        </section>
+        <section class="container-soal">
+            <button onclick="ulangKata()">Refresh</button>
+            <div class="baris-kata">
+                <div id="soal1" class="kotak-kata"></div>
+                <div id="soal2" class="kotak-kata"></div>
+                <div id="soal3" class="kotak-kata"></div>
+            </div>
+        </section>
+        <button onclick="hadiah()">Lihat Hadiah</button>
+    </div>
+
+    <div class="cek">
+        <div class="cek-content">
+            <h2>Apakah benar???</h2>
+            <div class="modal-buttons">
+                <button id="benar" onclick="benar()"><i class="fa-solid fa-circle-check"></i></button>
+                <button id="salah" onclick="salah()"><i class="fa-solid fa-circle-xmark"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert">
+        <div class="alert-content">
+            <h2>Nilaimu sudah memenuhi batas</h2>
+            <p>Nilaimu sudah <b id="nilai"></b>. Mau main lagi? Atau mau lihat hadiah?</p>
+            <div class="modal-buttons">
+                <button onclick="ulangi()">Main lagi!</button>
+                <button onclick="hadiah()">Lihat Hadiah</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="lanjutan.js"></script>
+</body>
+</html>
