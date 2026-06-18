@@ -96,6 +96,7 @@ function benar(){
 
 function salah(){
     checkOrtuTua.style.display = 'none';
+    utama.style.display = '';
 }
 
 // Pengecekan saat halaman pertama kali di-load
