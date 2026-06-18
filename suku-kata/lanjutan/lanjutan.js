@@ -5,7 +5,17 @@ const mentahanSukuKata = [
     ['da', 'di', 'du', 'de', 'do'],
     ['fa', 'fi', 'fu', 'fe', 'fo'],
     ['ga', 'gi', 'gu', 'ge', 'go'],
-    ['ha', 'hi', 'hu', 'he', 'ho']
+    ['ha', 'hi', 'hu', 'he', 'ho'],
+    ['ja', 'ji', 'ju', 'je', 'jo'],
+    ['ka', 'ki', 'ku', 'ke', 'ko'],
+    ['la', 'li', 'lu', 'le', 'lo'],
+    ['ma', 'mi', 'mu', 'me', 'mo'],
+    ['na', 'ni', 'nu', 'ne', 'no'],
+    ['pa', 'pi', 'pu', 'pe', 'po'],
+    ['ra', 'ri', 'ru', 're', 'ro'],
+    ['sa', 'si', 'su', 'se', 'so'],
+    ['ta', 'ti', 'tu', 'te', 'to'],
+    ['ya', 'yi', 'yu', 'ye', 'yo']
 ];
 
 const allSoal = mentahanSukuKata.flat()
@@ -29,10 +39,18 @@ function pilihKata(jumlah, soal){
 const sukuK1 = pilihKata(3, allSoal);
 const sukuK2 = pilihKata(3, allSoal);
 
+const quest = [
+    `${sukuK1[0]}${sukuK2[0]}`,
+    `${sukuK1[1]}${sukuK2[1]}`,
+    `${sukuK1[2]}${sukuK2[2]}`
+];
+const selectQuest = pilihKata(1, quest);
+
 // -----menampilkan hasil pilihan kata-----
 document.getElementById('soal1').innerHTML = `<span class="suku1">${sukuK1[0]}</span><span class="suku2">${sukuK2[0]}</span>`;
 document.getElementById('soal2').innerHTML = `<span class="suku1">${sukuK1[1]}</span><span class="suku2">${sukuK2[1]}</span>`;
 document.getElementById('soal3').innerHTML = `<span class="suku1">${sukuK1[2]}</span><span class="suku2">${sukuK2[2]}</span>`;
+document.getElementById('quest').innerText = selectQuest[0];
 
 // -----logika nilai-----
 // deklarasi variabel
