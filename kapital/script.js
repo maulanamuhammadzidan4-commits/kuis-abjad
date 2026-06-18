@@ -17,9 +17,33 @@ function pilih(jumlah){
 
 const pilihan = pilih(3);
 
-document.getElementById('soal1').innerText = pilihan[0];
-document.getElementById('soal2').innerText = pilihan[1];
-document.getElementById('soal3').innerText = pilihan[2];
+const output1 = document.getElementById('soal1');
+const output2 = document.getElementById('soal2');
+const output3 = document.getElementById('soal3');
+
+output1.innerText = pilihan[0];
+output2.innerText = pilihan[1];
+output3.innerText = pilihan[2];
+
+if(pilihan[0] == 'b' || pilihan[0] == 'd' || pilihan[0] == 'g' || pilihan[0] == 'e'){
+    if(pilihan[0] == 'd' || pilihan[0] == 'e'){
+        output1.style.color = '#00f';
+    } else {
+        output1.style.color = 'gold';
+    }
+} else if(pilihan[1] == 'b' || pilihan[1] == 'd' || pilihan[1] == 'g' || pilihan[1] == 'e'){
+    if(pilihan[1] == 'd' || pilihan[1] == 'e'){
+        output2.style.color = '#f00';
+    } else {
+        output2.style.color = 'gold';
+    }
+} else if(pilihan[2] == 'b' || pilihan[2] == 'd' || pilihan[2] == 'g' || pilihan[2] == 'e'){
+    if(pilihan[2] == 'd' || pilihan[2] == 'e'){
+        output3.style.color = 'yellow';
+    } else {
+        output3.style.color = 'gold';
+    }
+}
 
 function ulangHuruf(){
     location.reload();
@@ -55,7 +79,7 @@ tambahNilai.forEach((kotak) => {
 });
 
 function benar(){
-    nilai += 10;
+    nilai += 5;
     localStorage.setItem('kNilaiSimpan', nilai);
     updateUI(); // Update UI segera setelah nilai bertambah
 
