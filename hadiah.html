@@ -178,6 +178,11 @@
                     <td>Suku kata Lanjutan</td>
                     <td><span id="suku-kata-lanjutan"></span></td>
                 </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Kata Sehari-hari</td>
+                    <td><span id="kata-umum"></span></td>
+                </tr>
             </table>
 
             <p class="hasil">Karena nilaimu adalah <b id="tnilai"></b>. Jadi hadiahmu adalah <span id="hadiah"></span></p>
@@ -194,80 +199,37 @@
     </div>
 
     <script>
-        // variabel buat memilih elemen dan ngambil nilai
-        const nilaiK = Number(localStorage.getItem('kNilaiSimpan'));
-        const nilaiB = Number(localStorage.getItem('bNilaiSimpan'));
-        const nilaiSukuKata = Number(localStorage.getItem('nilaiSukuKata'));
-        const nextNilaiSukuKata = Number(localStorage.getItem('nilaiSukuKata2'));
-        const knilai = document.getElementById('knilai');
-        const bnilai = document.getElementById('bnilai');
-        const sukuKata = document.getElementById('suku-kata');
-        const nextKata = document.getElementById('suku-kata-lanjutan');
+        const kuis = [
+            { nama: 'Kapital', nilai: Number(localStorage.getItem('kNilaiSimpan')) || 0, elemen: 'knilai', tujuan: 'kapital/index.html' },
+            { nama: 'Biasa', nilai: Number(localStorage.getItem('bNilaiSimpan')) || 0, elemen: 'bnilai', tujuan: 'biasa/index.html' },
+            { nama: 'Suku Kata', nilai: Number(localStorage.getItem('nilaiSukuKata')) || 0, elemen: 'suku-kata', tujuan: 'suku-kata/index.html' },
+            { nama: 'Suku kata lanjutan', nilai: Number(localStorage.getItem('nilaiSukuKata2')) || 0, elemen: 'suku-kata-lanjutan', tujuan: 'suku-kata/lanjutan/lanjutan.html' },
+            { nama: 'Kata Sehari-hari', nilai: Number(localStorage.getItem('nilaiKataUmum')) || 0, elemen: 'kata-umum', tujuan: 'kata-umum/index.html' }
+        ];
+        const totalNilai = kuis.reduce((total, item) => total + item.nilai, 0);
+        const kuisKosong = kuis.filter((item) => item.nilai === 0);
         const tnilai = document.getElementById('tnilai');
         const hadiah = document.getElementById('hadiah');
         const galat = document.getElementById('galat');
-        console.log(`${nilaiK} ${nilaiB} ${nilaiSukuKata} ${nextNilaiSukuKata}`);
 
-        // logika pemilihan hadiah
-        const totalNilai = nilaiK + nilaiB + nilaiSukuKata + nextNilaiSukuKata;
         const tipeHadiah = (totalNilai > 400) ? 'Gacor' : (totalNilai == 400) ? 'Lorem ipsum' : (totalNilai > 100) ? 'lorem' : (totalNilai <= 100) ? 'ipsum' : 'Tidak ada hadiah untukmu.';
 
-        // output hadiah
-        const penentu = (nilaiK == 0 && nilaiB == 0 && nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'z' : (nilaiK == 0 && nilaiB == 0 || nilaiB == 0 && nilaiSukuKata == 0 || nilaiK == 0 && nilaiSukuKata == 0 || nilaiK == 0 && nextNilaiSukuKata == 0 || nilaiB == 0 && nextNilaiSukuKata == 0 || nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'p' : (nilaiK == 0) ? 'b' : (nilaiB == 0) ? 'd' : (nilaiSukuKata == 0) ? 'g' : (nextNilaiSukuKata == 0) ? 'h' : 'f';
-        console.log(penentu);
         function isi(){
-            if (penentu == 'b'){
-                window.location.href = 'kapital/index.html';
-            } else if (penentu == 'd'){
-                window.location.href = 'biasa/index.html';
-            } else if (penentu == 'g'){
-                window.location.href = 'suku-kata/index.html'
-            } else if (penentu == 'h'){
-                window.location.href = 'suku-kata/lanjutan/lanjutan.html'
-            } else if (penentu == 'z' || penentu == 'p'){
-                window.location.href = 'index.html';
-            }
+            window.location.href = kuisKosong[0]?.tujuan || 'index.html';
         }
-        if (penentu == 'z'){
-            document.querySelector('.alert').innerHTML = `
-            <div class="card">
-                <h2>Hadiah?</h2>
-                <p class="hasil">Semua nilai masih kosong. Isi dulu ya!</p>
-                <button onclick="isi()">Isi</button>
-            </div>
-            `;
+
+        if (kuisKosong.length > 0){
+            galat.innerText = kuisKosong.map((item) => item.nama).join(', ');
             document.querySelector('.container').style.display = 'none';
             document.querySelector('.alert').style.display = 'flex';
-        } else if (penentu == 'b'){
-            galat.innerText = 'Kapital';
-            document.querySelector('.container').style.display = 'none';
-            document.querySelector('.alert').style.display = 'flex';
-        } else if (penentu == 'd'){
-            galat.innerText = 'Biasa';
-            document.querySelector('.container').style.display = 'none';
-            document.querySelector('.alert').style.display = 'flex';
-        } else if (penentu == 'g'){
-            galat.innerText = 'Suku Kata';
-            document.querySelector('.container').style.display = 'none';
-            document.querySelector('.alert').style.display = 'flex';
-        } else if(penentu == 'h'){
-            galat.innerText = 'Suku kata lanjutan';
-            document.querySelector('.container').style.display = 'none';
-            document.querySelector('.alert').style.display = 'flex';
-        } else if (penentu == 'p'){
-            let kosong1 = (nilaiK == 0 && nilaiB == 0) ? 'Kapital' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Biasa' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : (nilaiK == 0 && nextNilaiSukuKata == 0) ? 'Kapital' : (nilaiB == 0 && nextNilaiSukuKata == 0) ? 'Suku kata lanjutan' : (nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'Suku kata' : '';
-            let kosong2 = (nilaiK == 0 && nilaiB == 0) ? 'Biasa' : (nilaiB == 0 && nilaiSukuKata == 0) ? 'Suku Kata' : (nilaiK == 0 && nilaiSukuKata == 0) ? 'Kapital' : (nilaiK == 0 && nextNilaiSukuKata == 0) ? 'Suku kata lanjutan' : (nilaiB == 0 && nextNilaiSukuKata == 0) ? 'Biasa' : (nilaiSukuKata == 0 && nextNilaiSukuKata == 0) ? 'Suku kata lanjutan' : '';
-            galat.innerText = `${kosong1} dan ${kosong2}`;
-            document.querySelector('.container').style.display = 'none';
-            document.querySelector('.alert').style.display = 'flex';
-        } else if (penentu == 'f'){
-            knilai.innerText = nilaiK;
-            bnilai.innerText = nilaiB;
-            sukuKata.innerText = nilaiSukuKata;
-            nextKata.innerText = nextNilaiSukuKata;
+        } else {
+            kuis.forEach((item) => {
+                document.getElementById(item.elemen).innerText = item.nilai;
+            });
             tnilai.innerText = totalNilai;
             hadiah.innerText = tipeHadiah;
         }
+
         function pulang(){
             window.location.href = 'index.html';
             localStorage.clear()

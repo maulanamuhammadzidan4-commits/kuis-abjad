@@ -95,6 +95,15 @@
             box-shadow: 0 14px 0 #20B056;
         }
 
+        #kata-umum button {
+            background-color: #FFA502;
+            box-shadow: 0 10px 0 #E58A00;
+        }
+        #kata-umum button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #E58A00;
+        }
+
         #hadiah button {
             background-color: #eefd15; /* Hijau cerah */
             box-shadow: 0 10px 0 #dfe529;
@@ -134,10 +143,12 @@
             #kapital button { box-shadow: 0 7px 0 #FF1F30; }
             #biasa button { box-shadow: 0 7px 0 #0070E0; }
             #suku-kata button { box-shadow: 0 7px 0 #20B056; }
+            #kata-umum button { box-shadow: 0 7px 0 #E58A00; }
             
             #kapital button:hover { box-shadow: 0 9px 0 #FF1F30; }
             #biasa button:hover { box-shadow: 0 9px 0 #0070E0; }
             #suku-kata button:hover { box-shadow: 0 9px 0 #20B056; }
+            #kata-umum button:hover { box-shadow: 0 9px 0 #E58A00; }
 
             section button:active {
                 transform: translateY(7px);
@@ -160,6 +171,9 @@
             <section id="suku-kata">
                 <button onclick="sukuKata()">Suku Kata</button>
             </section>
+            <section id="kata-umum">
+                <button onclick="kataUmum()">Kata Sehari-hari</button>
+            </section>
             <section id="hadiah">
                 <button onclick="hadiah()">Hadiah</button>
             </section>
@@ -175,6 +189,9 @@
         }
         function sukuKata(){
             window.location.href = 'suku-kata/index.html';
+        }
+        function kataUmum(){
+            window.location.href = 'kata-umum/index.html';
         }
         function hadiah(){
             window.location.href = 'hadiah.html'
